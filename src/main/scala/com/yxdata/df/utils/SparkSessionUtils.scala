@@ -30,9 +30,9 @@ object SparkSessionUtils {
     val explodeDf = spark.read.option("sep", ";").option("header", value = true).csv(explodeDataPath)
     explodeDf.write.mode(SaveMode.Ignore).saveAsTable("yx_ods.ods_province_category_df")
 
-    val posexplodeDataPath = this.getClass.getClassLoader.getResource("posexplode.csv").getPath
-    val posexplodeDf = spark.read.option("sep", ";").option("header", value = true).csv(posexplodeDataPath)
-    posexplodeDf.write.mode(SaveMode.Ignore).saveAsTable("yx_ods.ods_students_score_df")
+    val naDataPath = this.getClass.getClassLoader.getResource("na.csv").getPath
+    val naDf = spark.read.option("header", value = true).csv(naDataPath)
+    naDf.write.mode(SaveMode.Ignore).saveAsTable("yx_ods.ods_na_df")
 
     spark
   }
